@@ -17,7 +17,7 @@ from sklearn_features. transformers import DataFrameSelector
 ## skelarn -- models
 # from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
-# from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 
 ## sklearn -- metrics
 from sklearn.metrics import f1_score, confusion_matrix
@@ -114,8 +114,7 @@ def train_model(X_train, y_train, plot_name='', class_weight=None):
     """ A function to train model given the required train data """
     
     global clf_name
-
-    clf = RandomForestClassifier(n_estimators=500, max_depth=10, random_state=45, class_weight=class_weight)
+   clf = LogisticRegression(C=1.5 , class_weight=class_weight , max_iter=700 , random_state=42)
     clf.fit(X_train, y_train)
     y_pred_train = clf.predict(X_train)
     y_pred_test = clf.predict(X_test_final)
@@ -175,4 +174,5 @@ for i, path in enumerate(confusion_matrix_paths, 1):
 ## Save combined plot locally
 plt.suptitle(clf_name, fontsize=16)
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+
 plt.savefig(f'conf_matrix.png', bbox_inches='tight', dpi=300)
