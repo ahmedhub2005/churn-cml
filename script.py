@@ -114,7 +114,7 @@ def train_model(X_train, y_train, plot_name='', class_weight=None):
     """ A function to train model given the required train data """
     
     global clf_name
-   clf = LogisticRegression(C=1.5 , class_weight=class_weight , max_iter=700 , random_state=42)
+    clf = LogisticRegression(C=1.5 , class_weight=class_weight , max_iter=700 , random_state=42)
     clf.fit(X_train, y_train)
     y_pred_train = clf.predict(X_train)
     y_pred_test = clf.predict(X_test_final)
@@ -176,3 +176,4 @@ plt.suptitle(clf_name, fontsize=16)
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 plt.savefig(f'conf_matrix.png', bbox_inches='tight', dpi=300)
+
